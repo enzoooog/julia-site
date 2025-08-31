@@ -42,4 +42,3 @@ window.onload = () => {
     criarCoracoesContinuos();
 };
 
-

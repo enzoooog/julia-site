@@ -7,13 +7,14 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh; /* substituído height por min-height */
+  flex-direction: column; /* ajuda com conteúdo longo */
 }
 
 .screen {
   display: none;
   width: 100%;
-  height: 100%;
+  min-height: 100%; /* altura automática */
   text-align: center;
 }
 
@@ -22,6 +23,8 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 20px; /* espaço interno */
+  box-sizing: border-box;
 }
 
 /* Coração inicial */
@@ -65,12 +68,13 @@ body {
   background: #fff;
   color: #333;
   border-radius: 15px;
-  padding: 20px;
-  width: 90%;
-  max-width: 400px;
+  padding: 30px;
+  width: 95%;
+  max-width: 700px;
   text-align: center;
   box-shadow: 0 5px 20px rgba(0,0,0,0.5);
   position: relative;
+  overflow: visible; /* importante para que o texto não seja cortado */
 }
 
 .close-btn {
@@ -92,16 +96,19 @@ body {
 }
 
 #textoHistoria {
-  font-size: 16px;
-  margin-bottom: 20px;
+  font-size: 18px;
+  margin-bottom: 25px;
+  word-wrap: break-word; /* evita cortar palavras */
 }
 
+/* Memórias */
 .memorias-title {
   font-size: 18px;
   margin: 10px 0;
   color: #a30018;
 }
 
+/* Galeria */
 .galeria {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -110,11 +117,12 @@ body {
 
 .galeria img {
   width: 100%;
-  border-radius: 10px;
+  border-radius: 15px;
   object-fit: cover;
 }
+
 /* Corações flutuantes */
-#coracoes {
+#coracoes, #hearts-container {
     position: fixed;
     top: 0;
     left: 0;
@@ -122,34 +130,33 @@ body {
     height: 100%;
     pointer-events: none;
     overflow: hidden;
-    z-index: 10;
-    }
+    z-index: 1;
+}
+
 .floating-heart {
     position: absolute;
     font-size: 24px;
     animation: floatUp 4s linear forwards;
-    }
+    z-index: 1;
+}
+
 @keyframes floatUp {
-    0% {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-    }
-    100% {
-    transform: translateY(-100vh) scale(1.5);
-    opacity: 0;
-    }
-    }
+    0% { transform: translateY(100vh) scale(1); opacity: 1; }
+    100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+}
+
 /* Botão voltar */
 .voltar-btn {
   background: #1d3557;
   border: none;
-  padding: 10px 20px;
+  padding: 12px 24px;
   border-radius: 30px;
   color: white;
-  font-size: 16px;
+  font-size: 18px;
   cursor: pointer;
   transition: 0.3s;
 }
+
 .voltar-btn:hover {
   background: #457b9d;
   transform: scale(1.1);
@@ -166,13 +173,14 @@ body {
     }
     .card {
         width: 95%;
-        padding: 15px;
+        padding: 20px;
     }
     .card-title {
         font-size: 20px;
     }
     #textoHistoria {
-        font-size: 14px;
+        font-size: 16px;
+        margin-bottom: 20px;
     }
     .memorias-title {
         font-size: 16px;
@@ -181,21 +189,7 @@ body {
         grid-template-columns: repeat(2, 1fr);
         gap: 6px;
     }
-    
-
 }
-.floating-heart {
-  position: absolute;
-  bottom: 0;
-  font-size: 24px;
-  animation: floatUp linear forwards;
-}
-
-@keyframes floatUp {
-  0% { transform: translateY(0); opacity: 1; }
-  100% { transform: translateY(-600px); opacity: 0; }
-}
-/* Fundo preto com corações passando constantemente */
 #hearts-container {
     position: fixed;
     top: 0;
@@ -204,38 +198,18 @@ body {
     height: 100%;
     pointer-events: none;
     overflow: hidden;
-    z-index: 1;
+    z-index: 0; /* atrás do conteúdo */
 }
 
 .floating-heart {
     position: absolute;
-    font-size: 24px;
-    animation: floatUp linear forwards;
-    z-index: 1;
+    color: #e63946;
+    font-size: 20px;
+    animation: floatUp 4s linear forwards;
+    opacity: 0.8;
 }
 
 @keyframes floatUp {
     0% { transform: translateY(100vh) scale(1); opacity: 1; }
     100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
-}
-
-/* Tela surpresa maior */
-.card {
-    width: 95%;
-    max-width: 700px; /* Aumentado */
-    padding: 30px;
-}
-#textoHistoria {
-    font-size: 18px; /* Aumentado */
-    margin-bottom: 25px;
-}
-.galeria img {
-    border-radius: 15px; /* Aumentado */
-}
-/* Botão voltar maior */
-.voltar-btn {
-    padding: 12px 24px; /* Aumentado */
-    font-size: 18px; /* Aumentado */
-
-
 }
